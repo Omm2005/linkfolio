@@ -8,7 +8,7 @@ const ToastProvider = () => {
     const { theme , systemTheme } = useTheme()
     const isDark = theme === 'dark' || (theme === 'system' && systemTheme === 'dark')
   return (
-    <Toaster closeButton position="top-center" richColors theme={isDark ? 'dark' : 'light'} />
+    <Toaster closeButton position="bottom-center" richColors theme={isDark ? 'dark' : 'light'} />
   )
 }
 
