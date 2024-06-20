@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/components/Providers/theme-provider";
 import ToastProvider from "@/components/Providers/toast-provider";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react"
 
 const title = "LinkLists";
 const description = "LinkLists is a platform to share your links with the world. Showcase your work, projects, and socials with a single link.";
@@ -43,6 +44,7 @@ export default function RootLayout({
           >
               <ToastProvider />
         {children}
+        <Analytics />
       </ThemeProvider>
       </body>
     </html>
