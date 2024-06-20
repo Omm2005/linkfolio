@@ -28,7 +28,7 @@ type Props = {
 }
 
 const FormSchema = z.object({
-  url: z.string().min(1).max(50),
+  url: z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/, 'Only lowercase letters and numbers are allowed. No spaces or special characters expect hypnhen and underscore.'),
   name: z.string().min(1).max(100),
   designation: z.string().min(1).max(50),
   image: z.string().min(1, 'Please upload an image'),
@@ -44,7 +44,7 @@ export default function ProfileForm({ data }: Props) {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       image: data?.image || '',
-      url: data.url, 
+      url: data.url,
       name: data?.name || '',
       description: data?.description || '',
       designation: data?.designation || '',
@@ -104,10 +104,17 @@ export default function ProfileForm({ data }: Props) {
                 <FormField disabled={isLoading} control={form.control} name="url" render={({ field }) => (
                   <FormItem>
                     <Label className='text-lg'>
-                    URL
-                  </Label>
+                      URL
+                    </Label>
                     <FormControl>
-                      <Input {...field} type="text" placeholder="maiommhoon" className='h-12 w-full' />
+                      <Input
+                        {...field}
+                        className="text-start"
+                        placeholder="Om Shah Best Man Ever"
+                        onChange={field.onChange}
+                        value={field.value}
+                        pattern="^[a-z0-9_-]+$"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -115,8 +122,8 @@ export default function ProfileForm({ data }: Props) {
                 <FormField disabled={isLoading} control={form.control} name="name" render={({ field }) => (
                   <FormItem>
                     <Label className='text-lg'>
-                    Name
-                  </Label>
+                      Name
+                    </Label>
                     <FormControl>
                       <Input {...field} type="text" placeholder="Ek Tanng wala" className='h-12 w-full' />
                     </FormControl>
@@ -125,17 +132,17 @@ export default function ProfileForm({ data }: Props) {
                 )} />
                 <FormField disabled={isLoading} control={form.control} name="designation" render={({ field }) => (
                   <FormItem>
-                  <Label className='text-lg'>
-                    Designation
-                  </Label>
+                    <Label className='text-lg'>
+                      Designation
+                    </Label>
                     <FormControl>
                       <Input {...field} type="text" placeholder="Former Hockey Player" className='bg-background' />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
-                </div>
-                </div>
+              </div>
+            </div>
             <FormField disabled={isLoading} control={form.control} name="description" render={({ field }) => (
               <FormItem className='w-full'>
                 <Label className='text-lg'>
@@ -151,28 +158,28 @@ Lekin dil ke bohot ache hai, Fauran mujhe hospital le gaye aur ye nakli taang la
               </FormItem>
             )} />
             <div className='flex justify-center items-center w-full gap-3'>
-            <Button
-              className="flex rounded-base gap-2 h-12 w-full"
-              type="submit"
-              // onClick={() => form.handleSubmit(handleSubmit)()}
-              disabled={
-                isLoading
-              }
-              onClick={form.handleSubmit(handleSubmit)}
+              <Button
+                className="flex rounded-base gap-2 h-12 w-full"
+                type="submit"
+                // onClick={() => form.handleSubmit(handleSubmit)()}
+                disabled={
+                  isLoading
+                }
+                onClick={form.handleSubmit(handleSubmit)}
               >
-              {isLoading && <Loader />}
-              {isLoading ? 'Saving...' : 'Save Profile'}
-            </Button>
-            <Button
-            variant='outline'
-              className="flex rounded-base gap-2 h-12 w-full"
-              disabled={isLoading || data?.name === '' || data?.designation === '' || data?.description === '' || data?.image === ''}
-              type="button"
-              onClick={() => router.push('/editor/links')}
-            >
-              Next
-            </Button>
-              </div>
+                {isLoading && <Loader />}
+                {isLoading ? 'Saving...' : 'Save Profile'}
+              </Button>
+              <Button
+                variant='outline'
+                className="flex rounded-base gap-2 h-12 w-full"
+                disabled={isLoading || data?.name === '' || data?.designation === '' || data?.description === '' || data?.image === ''}
+                type="button"
+                onClick={() => router.push('/editor/links')}
+              >
+                Next
+              </Button>
+            </div>
           </div>
         </form>
       </Form>
