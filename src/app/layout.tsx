@@ -4,7 +4,6 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/components/Providers/theme-provider";
 import ToastProvider from "@/components/Providers/toast-provider";
 import { Metadata } from "next";
-import LinkListsIco from "@/public/favicon.ico";
 
 const title = "LinkLists";
 const description = "LinkLists is a platform to share your links with the world. Showcase your work, projects, and socials with a single link.";
@@ -13,7 +12,7 @@ const image = 'https://linklists.vercel.app/link-lists.png'
 export const metadata: Metadata = {
   title,
   description,
-  icons: [LinkListsIco.src],
+  icons: [image],
   openGraph: {
     title,
     description,
