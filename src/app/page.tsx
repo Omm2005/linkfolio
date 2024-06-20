@@ -28,7 +28,7 @@ export default async function HomePage() {
             ` animate-gradient flex md:text-xl text-xm bg-gradient-to-r from-[#ffaa40] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent bg-background`,
           )}
           >
-                  🎉 <hr className="mx-2 h-6 justify-center items-center flex w-[1px] shrink-0 bg-muted-foreground" />{" "} Make your own LinkFolio
+                  🎉 <hr className="mx-2 h-6 justify-center items-center flex w-[1px] shrink-0 bg-muted-foreground" />{" "} Make your own linklists
             </span>
         <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
       </AnimatedGradientText>
