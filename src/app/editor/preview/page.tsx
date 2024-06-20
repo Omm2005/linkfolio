@@ -18,6 +18,7 @@ type Props = {
 const page = async({
     params
 }: Props) => {
+  const { url } = params
     const userDB = await getProfileData(url)
     if(!userDB) {
         return {
@@ -45,7 +46,7 @@ const page = async({
       }
     }
     )
-    const url = userDB.url
+    const copyUrl = userDB.url
 
   return (
 
@@ -59,7 +60,7 @@ const page = async({
         <h1 className='md:text-2xl text-lg font-bold'>{userDB.name}</h1>
         <p className='md:text-lg text-base text-foreground/80'>{userDB.designation}</p>
       </div>
-      <AnimatedCopyButton url={env.NEXTAUTH_URL + '/' + url} isShare />
+      <AnimatedCopyButton url={env.NEXTAUTH_URL + '/' + copyUrl} isShare />
       </div>
       <Separator />
       <p className='text-muted-foreground' >
