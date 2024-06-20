@@ -23,7 +23,7 @@ type Props = {
 
 
 const FormSchema = z.object({
-  url: z.string().min(1, 'URL is required').max(50, 'URL is too long')
+  url: z.string().min(1, 'URL is required')
 })
 
 const UpdateSocialForm = ({

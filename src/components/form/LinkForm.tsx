@@ -35,7 +35,7 @@ type Props = {
 
 
 const FormSchema = z.object({
-  title: z.string().min(1, 'Name is required').max(50, 'Name is too long'),
+  title: z.string().min(1, 'Name is required'),
   url: z.string().url('Invalid URL').min(1, 'URL is required').max(50, 'URL is too long')
 })
 
@@ -78,9 +78,9 @@ export default function LinkForm({
           url: bodyData.url,
           category: bodyData.category
         }).then((res: any) => {
+          form.reset();
           if (res.error) {
             toast.error(res.error, { duration: 5000 });
-            form.reset();
             router.refresh();
           } else {
             router.push('/editor/links');
