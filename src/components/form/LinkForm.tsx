@@ -35,8 +35,8 @@ type Props = {
 
 
 const FormSchema = z.object({
-  title: z.string().min(1, 'Name is required'),
-  url: z.string().url('Invalid URL').min(1, 'URL is required').max(50, 'URL is too long')
+  title: z.string().min(1, 'Name is required').max(50, 'Name is too long'),
+  url: z.string().url('Invalid URL').min(1, 'URL is required')
 })
 
 export default function LinkForm({
