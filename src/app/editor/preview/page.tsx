@@ -18,7 +18,6 @@ type Props = {
 const page = async({
     params
 }: Props) => {
-    const { url } = params
     const userDB = await getProfileData(url)
     if(!userDB) {
         return {
@@ -46,6 +45,7 @@ const page = async({
       }
     }
     )
+    const url = userDB.url
 
   return (
 
