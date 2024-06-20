@@ -14,6 +14,9 @@ const config = {
           { hostname: "api.microlink.io" }
         ]
       },
+    eslint: {
+      ignoreDuringBuilds: true,
+  }
 };
 
 

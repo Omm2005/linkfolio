@@ -14,9 +14,8 @@ import React, {
 import type {
   GlobalOptions as ConfettiGlobalOptions,
   Options as ConfettiOptions,
+  CreateTypes as ConfettiInstance
 } from "canvas-confetti";
-
-import type { CreateTypes as ConfettiInstance } from "canvas-confetti";
 
 type Api = {
   fire: (options?: ConfettiOptions) => void;

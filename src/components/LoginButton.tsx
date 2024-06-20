@@ -25,7 +25,7 @@ const LoginButton = ({cta}: Props) => {
         }
       };
   return (
-    <Button variant={'navigator'} size={'nav'} onClick={LoginWithGoogle} className='inline-flex overflow-hidden rounded-full cursor-pointer' >
+    <Button variant='link' size={'sm'} onClick={LoginWithGoogle} className='inline-flex overflow-hidden rounded-full cursor-pointer' >
       <AnimatedGradientText className='cursor-pointer m-2'>
         <span className={cn("flex justify-center items-center text-center" , cta && 'm-2')}>
         
