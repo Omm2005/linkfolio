@@ -14,18 +14,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
-}
-
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -55,20 +43,63 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
+    id String @id @default(cuid())
+
+    // On page
+    url             String?   @unique
+    name            String?
+    email           String?   @unique
+    emailVerified   DateTime?
+    designation     String?
+    image           String?
+    bio             String?
+    backGroundImage String?
+
+    // Connection
+    accounts   Account[]
+    sessions   Session[]
+    createdAt  DateTime   @default(now())
+    Links      Link[]
+    Categories Category[]
+    Socials    Socials[]
 }
 
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
+// Define the data model for links
+model Link {
+    id          String  @id @default(cuid())
+    title       String
+    url         String
+    isPublished Boolean @default(false)
+    order       Int     @default(autoincrement())
 
-    @@unique([identifier, token])
+    // Many-to-one relationship with User
+    user   User   @relation(fields: [userId], references: [id])
+    userId String
+
+    // One-to-many relationship with Category
+    category   Category? @relation(fields: [categoryId], references: [id])
+    categoryId String?
+}
+
+// Define the data model for categories
+model Category {
+    id    String @id @default(cuid())
+    name  String @unique
+    order Int    @default(autoincrement())
+
+    // One-to-many relationship with Link
+    links  Link[] // This field is optional depending on your application's needs
+    user   User   @relation(fields: [userId], references: [id])
+    userId String
+}
+
+model Socials {
+    id String @id @default(cuid())
+
+    // On page
+    url String
+
+    // Connection
+    user   User   @relation(fields: [userId], references: [id])
+    userId String
 }

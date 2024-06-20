@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
+import { ThemeProvider } from "@/components/Providers/theme-provider";
+import ToastProvider from "@/components/Providers/toast-provider";
 
 export const metadata = {
   title: "Create T3 App",
@@ -15,7 +17,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body className="bg-background" >
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+              <ToastProvider />
+        {children}
+      </ThemeProvider>
+      </body>
     </html>
   );
 }
