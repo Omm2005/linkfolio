@@ -38,6 +38,7 @@ const FormSchema = z.object({
 
 export default function ProfileForm({ data }: Props) {
   const router = useRouter()
+  const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Sonner' }), 1000));
 
   const form = useForm<z.infer<typeof FormSchema>>({
     mode: 'onChange',
@@ -65,14 +66,20 @@ export default function ProfileForm({ data }: Props) {
         backgroundImage: values.backgroundImage,
       };
       await updateProfileData(bodyData).then((res: any) => {
-        form.reset();
+        // form.reset();
         if (res.error) {
           toast.error(res.error, { duration: 5000 });
           router.refresh();
         } else {
           const { id } = res;
-          router.push('/editor');
-          toast.success("Profile Saved Successfully", { duration: 5000 });
+          toast.promise(promise, {
+            loading: 'Loading...',
+            success: (data) => {
+              return `Profile Saved Successfully`;
+            },
+            error: 'Error',
+          });
+          router.refresh();
         }
       });
     } catch (e) {
