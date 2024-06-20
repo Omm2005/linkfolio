@@ -2,6 +2,7 @@ import { AnimatedCopyButton } from '@/components/global/animated-copy-button'
 import Preview from '@/components/global/preview'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { env } from '@/env'
 import { getProfileData } from '@/server/actions'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -58,7 +59,7 @@ const page = async({
         <h1 className='md:text-2xl text-lg font-bold'>{userDB.name}</h1>
         <p className='md:text-lg text-base text-foreground/80'>{userDB.designation}</p>
       </div>
-      <AnimatedCopyButton url={process.env.NEXTAUTH_URL + '/' + url} isShare />
+      <AnimatedCopyButton url={env.NEXTAUTH_URL + '/' + url} isShare />
       </div>
       <Separator />
       <p className='text-muted-foreground' >
